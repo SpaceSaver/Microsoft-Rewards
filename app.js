@@ -7,7 +7,8 @@ function wait(ms) {
 (async () => {
     const browser = await puppeteer.launch({
         headless: false,
-        userDataDir: "./data"
+        userDataDir: "./data",
+        defaultViewport: null
     });
     const page = (await browser.pages())[0];
     page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77");
@@ -20,8 +21,9 @@ function wait(ms) {
     for (let x = 1; x <= string.length; x++) {
         await page.goto("https://www.bing.com/search?q=" + string.substring(0, x), {waitUntil: "networkidle0", timeout: 0});
     }
+    const mstring = "abcdefghijklmnopqrstuvwxyz";
     page.setUserAgent("Mozilla/5.0 (Linux; Android 11; M2101K7BG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.40 Mobile Safari/537.36");
-    for (let x = 1; x <= string.length; x++) {
-        await page.goto("https://www.bing.com/search?q=" + string.substring(0, x), {waitUntil: "networkidle0", timeout: 0});
+    for (let x = 1; x <= mstring.length; x++) {
+        await page.goto("https://www.bing.com/search?q=" + mstring.substring(0, x), {waitUntil: "networkidle0", timeout: 0});
     }
 })();
