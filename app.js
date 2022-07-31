@@ -26,4 +26,5 @@ function wait(ms) {
     for (let x = 1; x <= mstring.length; x++) {
         await page.goto("https://www.bing.com/search?q=" + mstring.substring(0, x), {waitUntil: "networkidle0", timeout: 0});
     }
+    await browser.close();
 })();
