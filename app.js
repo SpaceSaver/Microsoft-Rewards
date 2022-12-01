@@ -14,7 +14,7 @@ function wait(ms) {
     page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77");
     await page.goto("https://rewards.microsoft.com/Signin?idru=%2F");
     await page.waitForNavigation({waitUntil: "load", timeout: 0});
-    while (!(await page.url()).startsWith("https://rewards.microsoft.com")) {
+    while (!(await page.url()).startsWith("https://rewards.microsoft.com") && !(await page.url()).startsWith("https://rewards.bing.com")) {
         await page.waitForNavigation({waitUntil: "load", timeout: 0});
     }
     const string = "abcdefghijklmnopqrstuvwxyz1234567890";
