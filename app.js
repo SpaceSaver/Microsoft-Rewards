@@ -5,6 +5,7 @@ function wait(ms) {
     });
 }
 (async () => {
+    const alpha = "abcdefghijklmnopqrstuvwxyz";
     const browser = await puppeteer.launch({
         headless: false,
         userDataDir: "./data",
@@ -17,11 +18,11 @@ function wait(ms) {
     while (!(await page.url()).startsWith("https://rewards.microsoft.com") && !(await page.url()).startsWith("https://rewards.bing.com")) {
         await page.waitForNavigation({waitUntil: "load", timeout: 0});
     }
-    const string = "abcdefghijklmnopqrstuvwxyz1234567890";
+    const string = alpha[Math.floor(Math.random()*alpha.length)] + "abcdefghijklmnopqrstuvwxyz1234567890";
     for (let x = 1; x <= string.length; x++) {
         await page.goto("https://www.bing.com/search?q=" + string.substring(0, x), {waitUntil: "networkidle0", timeout: 0});
     }
-    const mstring = "abcdefghijklmnopqrstuvwxyz";
+    const mstring = alpha[Math.floor(Math.random()*alpha.length)] + "abcdefghijklmnopqrstuvwxyz";
     page.setUserAgent("Mozilla/5.0 (Linux; Android 11; M2101K7BG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.40 Mobile Safari/537.36");
     for (let x = 1; x <= mstring.length; x++) {
         await page.goto("https://www.bing.com/search?q=" + mstring.substring(0, x), {waitUntil: "networkidle0", timeout: 0});
